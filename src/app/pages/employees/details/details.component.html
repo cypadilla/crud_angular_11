@@ -1,0 +1,23 @@
+<div class="card mt-2">
+    <div class="card-header">
+        Detalles del empleado
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                Name:<h5>Cristian Padilla</h5>
+            </li>
+            <li class="list-group-item">
+                Email:<h5>Cristancho2011@gmail.com</h5>
+            </li>
+            <li class="list-group-item">
+                Fecha de inicio:<h5>02-05-2020</h5>
+            </li>
+        </ul>
+    </div>
+    <div class="btn-group" role = "group ">
+        <button type = "button"class="btn btn-outline-primary m-2  btn-sm" (click)= "onGoToEdit()">Editar</button>
+        <button type = "button"class="btn btn-outline-danger  m-2  btn-sm" (click)="onGoToDelete()">Eliminar</button>
+    </div>
+</div>
+<button type = "button"class="btn btn-secondary mt-3 btn-lg" (click)="onGoBackToList()">Go back</button>
