@@ -5,15 +5,15 @@
             <th scope="col">Nombre</th>
             <th scope="col">Correo Electronico</th>
             <th scope="col">Fecha de inicio</th>
-            <th class="d-none d-sm-block" scope="col">Acciones</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody> 
-            <tr *ngFor="let item of [0, 1, 2, 3, 4]">
-              <th scope="row">Cristian Padilla</th>
-              <td>cristancho2011@gmail.com</td>
-              <td>02-05-2020</td>
-              <td class="btn-group d-none d-sm-block" role="group">
+            <tr *ngFor="let item of fakeData">
+              <th scope="row">{{item.name}} {{item.lastName}}</th>
+              <td>{{item.email}}</td>
+              <td>{{item.startDate}}</td>
+              <td class="btn-group d-sm-block" role="group">
                   <button type="button" class="btn btn-outline-primary m-1" (click)="onGoToEdit(item)">Editar</button>
                   <button type="button" class="btn btn-outline-success m-1" (click)="onGoToSee(item)">Ver</button>
                   <button type="button" class="btn btn-outline-danger m-1 disabled" (click)="onGoToDelete(item)">Eliminar</button>
