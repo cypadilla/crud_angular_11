@@ -1,19 +1,49 @@
 <form class="mt-5 col-md-8 offset-md-2" (ngSubmit)="onSave()" [formGroup]="employeeForm">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input type="text" class = "form-control" name="name" id="name" placeholder="Nombre" formControlName="name">
+            <input type="text" class = "form-control" name="name" id="name" placeholder="Nombre" formControlName="name"
+             [class]="isValidField('name')">
+             <div class="invalid-feedback">
+                <span *ngIf="employeeForm.get('name').errors?.required">
+                    Este campo es requerido
+                </span>
+             </div>
+                 
         </div>
         <div class="form-group col-md-6">
-            <input type="text" class = "form-control" name="LastName" id="lastName" placeholder="Apellido" formControlName="lastName">
+            <input type="text" class = "form-control" name="LastName" id="lastName" placeholder="Apellido" formControlName="lastName"
+            [class]="isValidField('lastName')">
+            <div class="invalid-feedback">
+                <span *ngIf="employeeForm.get('lastName').errors?.required">
+                    Este campo es requerido
+                </span>
+             </div>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Correo Electronico" formControlName="email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Correo Electronico" formControlName="email"
+            [class]="isValidField('email')">
+            <div class="invalid-feedback">
+                <span *ngIf="employeeForm.get('email').errors?.required">
+                    Este campo es requerido
+                </span>
+             </div>
+            <div class="invalid-feedback">
+                <span *ngIf="employeeForm.get('email').errors?.pattern">
+                    Ingrese un email vaido
+                </span>
+             </div>
             <small id="emailHelp" class="form-text text-muted">Introduce tu email.</small>
         </div>
         <div class="form-group col-md-6">
-            <input type="text" class = "form-control" name="startDate" id="startDate" placeholder="Fecha de inicio" formControlName="startDate"> 
+            <input type="text" class = "form-control" name="startDate" id="startDate" placeholder="Fecha de inicio" formControlName="startDate"
+            [class]="isValidField('startDate')"> 
+            <div class="invalid-feedback">
+                <span *ngIf="employeeForm.get('startDate').errors?.required">
+                    Este campo es requerido
+                </span>
+             </div>
         </div>
     </div>
     <button type="submit" class="btn btn-success bg-dark btn-block text-light">Guardar</button>
