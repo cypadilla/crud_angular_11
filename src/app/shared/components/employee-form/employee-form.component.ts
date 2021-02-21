@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeesService } from 'src/app/pages/employees/employees.service';
+import Swal from 'sweetalert2';
 import { Employee } from '../models/employee.interface';
 
 @Component({
@@ -39,9 +40,18 @@ export class EmployeeFormComponent implements OnInit {
       const employeeId = this.employee?.id || null;
       this.employeeService.onSaveEmployee(employee,employeeId);
       this.employeeForm.reset();
+      Swal.fire(
+        `Bienvenido ${employee.name} ${employee.lastName}`,
+        'Ya tienes acceso a la plataforma.',
+        'success'
+      )
     }else
     {
-      alert('Error guardando usuario')
+      Swal.fire(
+        'ERROR!',
+        'No se pudieron guardar los datos correctamente',
+        'error'
+      )
       console.error('error guardando los datos')
     }
   }

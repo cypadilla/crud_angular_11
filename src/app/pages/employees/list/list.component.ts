@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { EmployeesService } from '../employees.service';
 
 @Component({
@@ -32,10 +33,29 @@ export class ListComponent implements OnInit {
     this.navigationExtras.state.value = item;
     this.router.navigate(['details'], this.navigationExtras)
   }
-  async onGoToDelete(employeeId: string):Promise<void>{
+  async onGoToDelete(employeeName: string, employeeLastName:string ,employeeId: string):Promise<void>{
     try {
-      await this.employeesService.onDeleteEmployee(employeeId)
-      alert('Deleted')
+      Swal.fire({
+        title: `Seguro que desea eliminar a: ${employeeName} ${employeeLastName}`,
+        text: "No podras revertir tus acciones",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si,eliminalo!',
+        cancelButtonText:'Cancelar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await this.employeesService.onDeleteEmployee(employeeId)
+          .then(()=>{
+            Swal.fire(
+              `${employeeName} ${employeeLastName}`,
+              'Ha sido eliminado',
+              'success'
+            )
+          })
+        }
+      })
     } catch (error) {
       console.error(error)
     }
